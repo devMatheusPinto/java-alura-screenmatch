@@ -12,10 +12,16 @@ import java.util.Scanner;
 
 public class PrincipalComBusca {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Scanner
+        Scanner leitura = new Scanner(System.in);
+        System.out.println("Digite um filme para busca: ");
+        var busca = leitura.nextLine();
+
+        String chave = "db73fb24";
+        String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=" + chave;
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://www.omdbapi.com/?t=matrix&apikey=db73fb24"))
+                .uri(URI.create(endereco))
                 .build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
